@@ -109,6 +109,9 @@ export async function buildProject(
       join(artifactsPath, `bundle/macos/${app.name}.app`),
       join(artifactsPath, `bundle/macos/${app.name}.app.tar.gz`),
       join(artifactsPath, `bundle/macos/${app.name}.app.tar.gz.sig`),
+      join(artifactsPath, `/${app.name}.app`),
+      join(artifactsPath, `/${app.name}.app.tar.gz`),
+      join(artifactsPath, `/${app.name}.app.tar.gz.sig`),
     ].map((path) => ({ path, arch }));
   } else if (targetInfo.platform === 'windows') {
     if (arch.startsWith('i')) {
@@ -169,6 +172,25 @@ export async function buildProject(
       join(
         artifactsPath,
         `bundle/nsis/${app.name}_${app.version}_${arch}-setup.nsis.zip.sig`,
+      ),
+    );
+
+    winArtifacts.push(
+      join(
+        artifactsPath,
+        `/${app.name}.exe`,
+      ),
+      join(
+        artifactsPath,
+        `/${app.name}.exe.sig`,
+      ),
+      join(
+        artifactsPath,
+        `/${app.name}.zip`,
+      ),
+      join(
+        artifactsPath,
+        `/${app.name}.zip.sig`,
       ),
     );
 
