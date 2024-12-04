@@ -176,22 +176,10 @@ export async function buildProject(
     );
 
     winArtifacts.push(
-      join(
-        artifactsPath,
-        `/${app.name}.exe`,
-      ),
-      join(
-        artifactsPath,
-        `/${app.name}.exe.sig`,
-      ),
-      join(
-        artifactsPath,
-        `/${app.name}.zip`,
-      ),
-      join(
-        artifactsPath,
-        `/${app.name}.zip.sig`,
-      ),
+      join(artifactsPath, `/${app.name}.exe`),
+      join(artifactsPath, `/${app.name}.exe.sig`),
+      join(artifactsPath, `/${app.name}.zip`),
+      join(artifactsPath, `/${app.name}.zip.sig`),
     );
 
     artifacts = winArtifacts.map((path) => ({ path, arch }));
@@ -270,6 +258,18 @@ export async function buildProject(
         ),
         arch: appImageArch,
       },
+      {
+        path: join(artifactsPath, app.name),
+        arch: debianArch,
+      },
+      {
+        path: join(artifactsPath, app.name),
+        arch: rpmArch,
+      },
+      {
+        path: join(artifactsPath, app.name),
+        arch: appImageArch,
+      },
     ];
 
     if (app.name != linuxFileAppName) {
@@ -314,6 +314,18 @@ export async function buildProject(
             artifactsPath,
             `bundle/appimage/${linuxFileAppName}_${app.version}_${appImageArch}.AppImage.tar.gz.sig`,
           ),
+          arch: appImageArch,
+        },
+        {
+          path: join(artifactsPath, linuxFileAppName),
+          arch: debianArch,
+        },
+        {
+          path: join(artifactsPath, linuxFileAppName),
+          arch: rpmArch,
+        },
+        {
+          path: join(artifactsPath, linuxFileAppName),
           arch: appImageArch,
         },
       );
